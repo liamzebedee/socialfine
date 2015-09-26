@@ -23,3 +23,5 @@ accounts-facebook
 semantic:ui-css
 iron:router
 ejson
+mrt:facebook-sdk
+mrt:jquery-ui
