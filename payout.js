@@ -25,6 +25,11 @@ if (Meteor.isClient) {
             })
         }
     });
+
+
+      Router.route('/Privacy');
+
+
 }
 
 if (Meteor.isServer) {
