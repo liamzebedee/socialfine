@@ -32,8 +32,17 @@
         <span class="right floated">
           {{#if currentUser is to }}
 
-              <button class="ui button" id="payFine">Pay Fine</button>
-
+          <form action="" method="POST">
+            <script
+              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="pk_test_JByMAh88utOC96i16DdHM8U2"
+              data-amount="200"
+              data-name="Social Fines"
+              data-description="Forgiveness and donation beyond blue ($2.00)"
+              data-image="/128x128.png"
+              data-locale="auto">
+            </script>
+          </form>
                 {{/if}}
         </span>
         <span>
@@ -85,8 +94,17 @@
             <div class="extra">
             {{#if currentUser is to }}
 
-                <button class="ui button" id="payFine">Pay Fine</button>
-
+            <form action="" method="POST">
+              <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_JByMAh88utOC96i16DdHM8U2"
+                data-amount="200"
+                data-name="Social Fines"
+                data-description="Forgiveness and donation beyond blue ($2.00)"
+                data-image="payout.uptech.com.au/images/dp1.jpg"
+                data-locale="auto">
+              </script>
+            </form>
                   {{/if}}
             </div>
           </div>
@@ -96,5 +114,10 @@
     {{/each}}
 
 </div>
+
+
+
+
+
 
 </template>
