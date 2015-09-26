@@ -1,5 +1,6 @@
 <template name="Login">
 	    {{#if currentUser}}
+	    {{currentUser.services.facebook.picture }}
         {{currentUser.services.facebook.name}} -
         {{currentUser.services.facebook.gender}}
         <button class="ui button" id="logout">Logout</button>
