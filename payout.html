@@ -1,0 +1,21 @@
+<head>
+  <title>Payout - roast your mates</title>
+</head>
+
+<body class="container">
+  <h1>Payout</h1>
+</body>
+
+<template name="Login">
+	    {{#if currentUser}}
+        {{currentUser.services.facebook.name}} -
+        {{currentUser.services.facebook.gender}}
+        <button class="ui button" id="logout">Logout</button>
+    {{else}}
+        <button class="ui button" id="facebook-login"> Login with Facebook</button>
+    {{/if}}
+</template>
+
+<template name="Fines">
+
+</template>
