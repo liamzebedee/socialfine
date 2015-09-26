@@ -10,6 +10,7 @@ Session.set('friends', []);
 function getFriends(next) {
   FB.api("/"+Meteor.user().services.facebook.id+"/taggable_friends",
           function (response) {
+            console.log(response);
             console.log(Session.get('friends').length, response.data.length);
             Session.set('friends', Session.get('friends').concat(response.data));
 

@@ -26,7 +26,7 @@ Router.route('/FineAMate');
 
 
       function loadFacebookShit() {
-  Meteor.loginWithFacebook({ requestPermissions: ['public_profile','publish_actions'] }, function(err){
+  Meteor.loginWithFacebook({ requestPermissions: ['public_profile','publish_actions','user_friends'] }, function(err){
         if (err) {
             throw new Meteor.Error("Facebook login failed");
         }
