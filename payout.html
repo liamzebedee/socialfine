@@ -1,7 +1,41 @@
 <head>
-  <title>Payout - roast your mates</title>
+  <title>Social Fines</title>
 </head>
 
+
+
+
+
+
 <body class="container">
-  <h1>Payout</h1>
+  <h1>Social Fines</h1>
+
+
+
+
+  <div class="ui inverted menu">
+    <a class="active item">
+      My Fines
+    </a>
+    <a class="active item">
+      Fine a Mate
+    </a>
+
+    <div class="right menu">
+    {{#if currentUser}}
+      {{currentUser.services.facebook.name}} -
+      {{currentUser.services.facebook.gender}}
+      <button class="blue active item" id="logout">Logout</button>
+    {{else}}
+      <button class="blue active item" id="facebook-login"> Login with Facebook</button>
+    {{/if}}
+
+
+    </div>
+  </div>
+
+
+
+
+
 </body>
