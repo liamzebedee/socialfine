@@ -1,6 +1,3 @@
-
-
-
 if (Meteor.isClient) {
   Router.route('/', function () {
     // render the Home template with a custom data context
@@ -8,32 +5,10 @@ if (Meteor.isClient) {
   });
 
   // when you navigate to "/one" automatically render the template named "One".
-  Router.route('/one');
-
-  Template.Login.events({
-        'click #facebook-login': function(event) {
-          Meteor.loginWithFacebook({ loginStyle: "popup" }, function(err){
-              if (err) {
-                  throw new Meteor.Error("Facebook login failed");
-              } 
-          });
-      },
-   
-      'click #logout': function(event) {
-          Meteor.logout(function(err){
-              if (err) {
-                  throw new Meteor.Error("Logout faile  d");
-              }
-          })
-      }
-  });
-
-
+  Router.route('/Payouts');
 }
 
 if (Meteor.isServer) {
-
-
 
   Meteor.startup(function () {
     // code to run on server at startup

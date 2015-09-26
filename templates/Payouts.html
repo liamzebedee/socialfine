@@ -1,0 +1,15 @@
+<template name="Payouts">
+{{> postARoast }}
+
+<div class="roasts">
+  <ul>
+    {{#each roast}}
+      <li>
+        {{ from }}
+        {{ to }}
+      </li>
+    {{/each}}
+  </ul>
+</div>
+
+</template>
