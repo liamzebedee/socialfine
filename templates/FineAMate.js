@@ -1,5 +1,7 @@
 if(Meteor.isClient) {
 
+
+
 var FB_APP_ID = '442721019253710';
 var FB_CALLBACK_URL = Meteor.absoluteUrl();
 
@@ -12,8 +14,6 @@ function getFriends(next) {
             Session.set('friends', Session.get('friends').concat(response.data));
 
             if(response.paging && response.paging.cursors.after) {
-              getFriends(response.paging.cursors.after);
-            } else {
               var simpleArray = [];
               Session.get('friends').forEach(function(val){
                 simpleArray.push(val.name);
@@ -22,6 +22,9 @@ function getFriends(next) {
                 source: simpleArray
               });
 
+              getFriends(response.paging.cursors.after);
+
+            } else {
             }
           }, { access_token: Meteor.user().services.facebook.accessToken, after: next || '' }
         );
@@ -33,13 +36,14 @@ function postSocialFine() {
   var friendid = '';
   var friend = $('#yourFriend').val();
   friends.forEach(function(value){
-    if(value.name === friend) { console.log('help'); friendid = value.id; }
+    if(value.name === friend) { console.log(friendid); friendid = value.id; }
   });
 
   FB.api("/"+Meteor.user().services.facebook.id+"/feed", "POST", {
     message: $('#socialfineDesc').val() + " #socialfine",
-    tags: [friendid]
-  }, function(response){ console.log(response); });
+    tags: [friendid],
+    access_token: Meteor.user().services.facebook.accessToken
+  }, function(response){ console.log(response); console.log("/"+Meteor.user().services.facebook.id+"/feed");  });
 }
 
 function createSubscriptionsToUserPosts() {
@@ -51,18 +55,37 @@ function createSubscriptionsToUserPosts() {
   });
 }
 
-function loadFacebookShit() {
-  Meteor.loginWithFacebook({ requestPermissions: ['public_profile','publish_actions','user_status'] }, function(err){
-        if (err) {
-            throw new Meteor.Error("Facebook login failed");
-        }
+function getFriendDPFromName(name) {
+  var friends = Session.get('friends');
+  var url;
+  friends.forEach(function(value){
+    if(value.name == name) url = value.picture.data.url;
+  });
+  return url;
+}
 
-        FB.init({
-          appId      : FB_APP_ID,
-          status     : true,
-          xfbml      : true
-        });
 
+
+Template.FineAMate.events({
+  'click #postSocialFine': function(){
+    postSocialFine();
+  },
+
+  'keypress #yourFriend': function(event){
+    // FB.api(fbProfile+"/picture?type=large",
+    //       function (response) {
+    //         //response.data.url
+    //        }
+    //     );
+
+    Session.set('yourFriendDP', getFriendDPFromName(event.target.value));
+    $('#yourFriendDP').attr('src', getFriendDPFromName(event.target.value));
+  }
+
+});
+
+Template.FineAMate.onCreated(function(){
+  
         var fbProfile = "/"+Meteor.user().services.facebook.id;
 
         FB.api(fbProfile+"/picture?type=large",
@@ -72,26 +95,6 @@ function loadFacebookShit() {
         );
 
         getFriends(null);
-  });
-}
-
-Template.Login.events({
-    'click #facebook-login': function(event) {
-      loadFacebookShit();
-    },
-
-    'click #reload': function(){
-      loadFacebookShit();
-    },
- 
-    'click #logout': function(event) {
-        Meteor.logout(function(err){
-            if (err) {
-                throw new Meteor.Error("Logout failed");
-            }
-        })
-    }
-  });
-
+});
 	
 }

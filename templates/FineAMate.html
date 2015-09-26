@@ -1,17 +1,14 @@
-<template name="Login">
-	    {{#if currentUser}}
+<template name="FineAMate">
 	    <img src="{{currentUser.profile.displayPictureUrl }}"/>
         {{currentUser.services.facebook.name}} -
         {{currentUser.services.facebook.gender}}
 
+        <img src="{{ yourFriendDP }}" id="yourFriendDP"/>
         <input type="text" id="yourFriend" placeholder="Your (idiot) friend's name"/>
         <textarea id="socialfineDesc"></textarea>
 
         
 
-        <button class="ui button" id="reload">Reload</button>
+        <button class="ui button" id="postSocialFine">Post</button>
         <button class="ui button" id="logout">Logout</button>
-    {{else}}
-        <button class="ui button" id="facebook-login"> Login with Facebook</button>
-    {{/if}}
 </template>

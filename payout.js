@@ -4,17 +4,15 @@ if (Meteor.isClient) {
     //this.render('Login', {data: {title: 'My Title'}});
   });
 
+var FB_APP_ID = '442721019253710';
+Router.route('/FineAMate');
   // when you navigate to "/one" automatically render the template named "One".
   Router.route('/Payouts');
 
 
   Template.body.events({
           'click #facebook-login': function(event) {
-            Meteor.loginWithFacebook({ requestPermissions: ['public_profile','publish_actions'] }, function(err){
-                if (err) {
-                    throw new Meteor.Error("Facebook login failed");
-                }
-            });
+            loadFacebookShit();
         },
 
         'click #logout': function(event) {
@@ -27,7 +25,20 @@ if (Meteor.isClient) {
     });
 
 
-      Router.route('/Privacy');
+      function loadFacebookShit() {
+  Meteor.loginWithFacebook({ requestPermissions: ['public_profile','publish_actions'] }, function(err){
+        if (err) {
+            throw new Meteor.Error("Facebook login failed");
+        }
+
+        FB.init({
+          appId      : FB_APP_ID,
+          status     : true,
+          xfbml      : true
+        });
+
+  });
+}
 
 
 }
