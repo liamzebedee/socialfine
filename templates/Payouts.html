@@ -3,40 +3,41 @@
 
 
 
-{{ payouts }}
-<div class="ui link cards">
 
+<div class="ui link cards" style="margin-top:3em;">
+{{#each payouts }}
 
   <div class="card">
       <div class="image">
-        <img src="/images/evidence1.jpg">
+        <img src="{{ fromUserProfileUrl }}">
       </div>
       <div class="content">
-        <div class="header">Matt Giampietro</div>
+        <div class="header"></div>
         <div class="meta">
           <a class="ui image label">
-          <img src="/images/dp1.jpg">
-          Steve
+          $1 fine
           </a>
 
-          <a>was fined by </a>      <a class="ui image label">
-          <img src="/images/dp1.jpg">
-          Kevin
+          <a>was fined by </a>      
+
+          <a class="ui image label">
+          <img src="{{ fromUserProfileUrl }}">
+          {{ fromUserName }}
           </a>
         </div>
         <div class="description">
-          Matthew is an interior designer living in New York. Who decided to break the law
+          {{ message }}
         </div>
       </div>
       <div class="extra content">
         <span class="right floated">
-          {{#if currentUser is to }}
+          {{#if currentUser }}
 
           <form action="" method="POST">
             <script
               src="https://checkout.stripe.com/checkout.js" class="stripe-button"
               data-key="pk_test_JByMAh88utOC96i16DdHM8U2"
-              data-amount="200"
+              data-amount="100"
               data-name="Social Fines"
               data-description="Forgiveness and donation beyond blue ($2.00)"
               data-image="/128x128.png"
@@ -52,66 +53,8 @@
       </div>
     </div>
 
+{{/each}}
 
-
-
-<!--Above is a test
-
- Below is legit list-->
-
-    {{#each roast}}
-      <li>
-
-
-
-
-
-
-        <div class="item">
-          <div class="image">
-            <img src="/images/wireframe/image.png">
-          </div>
-          <div class="content">
-
-            <a class="ui image label">
-  <img src="/images/avatar/small/joe.jpg">
-    {{ from }}
-</a>
-
-
-<a class="ui image label">
-  <img src="/images/avatar/small/joe.jpg">
-  {{ to }}
-</a>
-
-
-            <div class="meta">
-              <span>Description</span>
-            </div>
-            <div class="description">
-              <p>{{ description }}</p>
-            </div>
-            <div class="extra">
-            {{#if currentUser is to }}
-
-            <form action="" method="POST">
-              <script
-                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                data-key="pk_test_JByMAh88utOC96i16DdHM8U2"
-                data-amount="200"
-                data-name="Social Fines"
-                data-description="Forgiveness and donation beyond blue ($2.00)"
-                data-image="payout.uptech.com.au/images/dp1.jpg"
-                data-locale="auto">
-              </script>
-            </form>
-                  {{/if}}
-            </div>
-          </div>
-        </div>
-
-      </li>
-    {{/each}}
 
 </div>
 

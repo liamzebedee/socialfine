@@ -1,6 +1,7 @@
+
+
 if(Meteor.isClient) {
 
-var Fines = new Mongo.Collection("fines");
 
 var FB_APP_ID = '442721019253710';
 var FB_CALLBACK_URL = Meteor.absoluteUrl();
@@ -46,13 +47,23 @@ function postSocialFine() {
 
   var message = $('#socialfineDesc').val();
   var fromUser = Meteor.user().services.facebook;
-  Fines.insert({ finedUser: friendid, fineUserName: friend, message: message, fromUser: fromUser.id, fromUserName: fromUser.name });
+  Fines.insert({ 
+    finedUser: friendid, 
+    fineUserName: friend,
+    message: message, 
+    fromUser: fromUser.id, 
+    fromUserName: fromUser.name,
+    fromUserProfileUrl: Meteor.user().profile.displayPictureUrl
+  });
 
-  FB.api("/"+fromUser.id+"/feed", "POST", {
-    message: message + " \n\nPay your fine @ http://socialfine.meteor.com",
-    tags: [friendid],
-    access_token: Meteor.user().services.facebook.accessToken
-  }, function(response){ console.log(response); console.log("/"+Meteor.user().services.facebook.id+"/feed");  });
+  var justDoIt = false;
+  if(justDoIt) {
+    FB.api("/"+fromUser.id+"/feed", "POST", {
+      message: message + " \n\nPay your fine @ http://socialfine.meteor.com",
+      tags: [friendid],
+      access_token: Meteor.user().services.facebook.accessToken
+    }, function(response){ console.log(response); console.log("/"+Meteor.user().services.facebook.id+"/feed");  });
+  }
 
 }
 

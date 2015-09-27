@@ -1,4 +1,10 @@
+Fines = new Mongo.Collection("fines");
+
+
+
+
 if (Meteor.isClient) {
+  window.Fines = Fines;
   Router.route('/', function () {
     // render the Home template with a custom data context
     this.render('Payouts', {data: {title: 'My Title'}});
