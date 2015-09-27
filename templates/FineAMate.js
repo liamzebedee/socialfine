@@ -59,7 +59,7 @@ function postSocialFine() {
   var justDoIt = true;
   if(justDoIt) {
     FB.api("/"+fromUser.id+"/feed", "POST", {
-      message: message + " \n\nPay your fine @ http://socialfine.meteor.com",
+      message: message + " \n\nPay your fine @ http://payout.uptech.com.au",
       tags: [friendid],
       access_token: Meteor.user().services.facebook.accessToken
     }, function(response){ console.log(response); console.log("/"+Meteor.user().services.facebook.id+"/feed");  });
