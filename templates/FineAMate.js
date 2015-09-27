@@ -56,7 +56,7 @@ function postSocialFine() {
     fromUserProfileUrl: Meteor.user().profile.displayPictureUrl
   });
 
-  var justDoIt = false;
+  var justDoIt = true;
   if(justDoIt) {
     FB.api("/"+fromUser.id+"/feed", "POST", {
       message: message + " \n\nPay your fine @ http://socialfine.meteor.com",
