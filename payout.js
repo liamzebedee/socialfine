@@ -1,13 +1,12 @@
 if (Meteor.isClient) {
   Router.route('/', function () {
     // render the Home template with a custom data context
-    //this.render('Login', {data: {title: 'My Title'}});
+    this.render('Payouts', {data: {title: 'My Title'}});
   });
 
 var FB_APP_ID = '442721019253710';
 Router.route('/FineAMate');
-  // when you navigate to "/one" automatically render the template named "One".
-  Router.route('/Payouts');
+Router.route('/Payouts');
 
 
   Template.body.events({

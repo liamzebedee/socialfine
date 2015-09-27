@@ -1,14 +1,55 @@
 <template name="FineAMate">
+
+<div class="ui middle aligned center aligned grid" >
+  <div class="column">
+
+	<div class="ui main text container" style="font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    max-width: 900px !important;margin-top:2em;">
+    <h1 class="ui header">Fine a friend</h1>
+    
+	<div class="ui card" style='display:inline-block!important;vertical-align:middle;'>
+	  <a class="image" href="#">
 	    <img src="{{currentUser.profile.displayPictureUrl }}"/>
-        {{currentUser.services.facebook.name}} -
-        {{currentUser.services.facebook.gender}}
+	  </a>
+	  <div class="content">
+	    <a class="header" href="#">{{currentUser.services.facebook.name}}</a>
+	    <div class="meta">
+	      
+	    </div>
+	  </div>
+	</div>
 
-        <img src="{{ yourFriendDP }}" id="yourFriendDP"/>
-        <input type="text" id="yourFriend" placeholder="Your (idiot) friend's name"/>
-        <textarea id="socialfineDesc"></textarea>
+	<span style="font-size:24px;vertical-align:middle;padding-left:2em;padding-right:2em;"> is fining </span>
 
-        
 
-        <button class="ui button" id="postSocialFine">Post</button>
-        <button class="ui button" id="logout">Logout</button>
+  	<div class="ui card" style='display:inline-block!important;vertical-align:middle;'>
+	  <a class="image" href="#">
+	    <img src="http://semantic-ui.com/images/avatar/large/steve.jpg" id="yourFriendDP"/>
+	  </a>
+	  <div class="content">
+	    <a class="header" href="#"><input type="text" id="yourFriend" placeholder="Your (idiot) friend's name"/></a>
+	    <div class="meta">
+	      
+	    </div>
+	  </div>
+	</div>
+
+  </div>
+
+    
+	<div class="ui main text container" style="font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    max-width: 900px !important;">
+    	<div class="ui form">
+  <div class="field">
+    <label>Offence:</label>
+    <textarea id="socialfineDesc" style="font-size:30px;" rows=3></textarea>
+  </div>
+  </div>
+
+	    <button class="ui large positive button" id="postSocialFine">Post fine</button>    </div>
+
+  </div>
+</div>
+
+
 </template>

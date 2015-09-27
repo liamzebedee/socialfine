@@ -8,7 +8,10 @@ var FB_CALLBACK_URL = Meteor.absoluteUrl();
 Session.set('friends', []);
 
 function getFriends(next) {
-  FB.api("/"+Meteor.user().services.facebook.id+"/taggable_friends",
+
+
+
+  FB.api("/"+Meteor.user().services.facebook.id+"/taggable_friends?picture.width(290).height(290)",
           function (response) {
             console.log(response);
             console.log(Session.get('friends').length, response.data.length);
@@ -72,20 +75,31 @@ Template.FineAMate.events({
     postSocialFine();
   },
 
-  'keypress #yourFriend': function(event){
-    // FB.api(fbProfile+"/picture?type=large",
+  'keyup #yourFriend': function(event){
+
+    var name = event.target.value;
+
+    $('#yourFriendDP').attr('src', getFriendDPFromName(name));
+
+
+    // FB.api('/'+friendid+"/picture?type=large",
     //       function (response) {
-    //         //response.data.url
-    //        }
+    //         console.log('/'+friendid+"/picture?type=large");
+    //         console.log(response);
+    //         $('#yourFriendDP').attr('src', response.data.url);
+    //        }, { access_token: Meteor.user().services.facebook.accessToken }
     //     );
 
-    Session.set('yourFriendDP', getFriendDPFromName(event.target.value));
-    $('#yourFriendDP').attr('src', getFriendDPFromName(event.target.value));
+    // Session.set('yourFriendDP', getFriendDPFromName(event.target.value));
+    
   }
 
 });
 
-Template.FineAMate.onCreated(function(){
+Template.FineAMate.rendered = function() {
+    if(!this._rendered) {
+      this._rendered = true;
+
   
         var fbProfile = "/"+Meteor.user().services.facebook.id;
 
@@ -96,6 +110,7 @@ Template.FineAMate.onCreated(function(){
         );
 
         getFriends(null);
-});
+  }
+};
 	
 }
